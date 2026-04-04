@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-dark-950 text-white font-body;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(0, 190, 255, 0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 10%, rgba(46, 46, 107, 0.3) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-dark-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-700;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-500 hover:bg-primary-400 text-dark-950 font-semibold py-2.5 px-6 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-display;
+  }
+
+  .btn-secondary {
+    @apply bg-dark-700 hover:bg-dark-600 text-white font-semibold py-2.5 px-6 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 border border-dark-500 hover:border-dark-400;
+  }
+
+  .btn-danger {
+    @apply bg-danger hover:bg-red-500 text-white font-semibold py-2.5 px-6 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2;
+  }
+
+  .btn-outline {
+    @apply border border-primary-500 text-primary-400 hover:bg-primary-500 hover:text-dark-950 font-semibold py-2.5 px-6 rounded-lg transition-all duration-200 disabled:opacity-50 flex items-center justify-center gap-2;
+  }
+
+  .input-field {
+    @apply w-full bg-dark-800 border border-dark-600 text-white placeholder-dark-300 rounded-lg px-4 py-3 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all duration-200;
+  }
+
+  .card {
+    @apply bg-dark-900 border border-dark-700 rounded-xl overflow-hidden transition-all duration-300 hover:border-dark-500;
+  }
+
+  .card-hover {
+    @apply card hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/10;
+  }
+
+  .glass-card {
+    @apply bg-dark-900/80 backdrop-blur-sm border border-dark-700/50 rounded-xl;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-available {
+    @apply badge bg-success/20 text-success;
+  }
+
+  .badge-sold {
+    @apply badge bg-danger/20 text-danger;
+  }
+
+  .badge-new {
+    @apply badge bg-primary-500/20 text-primary-400;
+  }
+
+  .section-title {
+    @apply text-2xl md:text-3xl font-bold font-display text-white;
+  }
+
+  .link-hover {
+    @apply text-primary-400 hover:text-primary-300 transition-colors duration-200;
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-400 to-primary-200 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-warm {
+    @apply bg-gradient-to-r from-accent to-warning bg-clip-text text-transparent;
+  }
+
+  .glow {
+    box-shadow: 0 0 20px rgba(0, 190, 255, 0.3);
+  }
+
+  .glow-sm {
+    box-shadow: 0 0 10px rgba(0, 190, 255, 0.2);
+  }
+}
