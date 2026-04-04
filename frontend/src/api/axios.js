@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const api = axios.create({
-  baseURL: 'https://electro-mart-yuq0.onrender.com/api',
+  baseURL: 'https://electro-mart-yuq0.onrender.com',
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
