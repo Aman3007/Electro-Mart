@@ -39,19 +39,20 @@ api.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        await axios.post('/api/auth/refresh', {}, { withCredentials: true });
-        processQueue(null);
-        return api(originalRequest);
-      } catch (refreshError) {
-        processQueue(refreshError, null);
-        // Redirect to login
-        if (window.location.pathname !== '/login') {
-          window.location.href = '/login';
-        }
-        return Promise.reject(refreshError);
-      } finally {
-        isRefreshing = false;
-      }
+  await api.post('/api/auth/refresh');
+  processQueue(null);
+  return api(originalRequest);
+} catch (refreshError) {
+  processQueue(refreshError, null);
+
+  if (window.location.pathname !== '/login') {
+    window.location.href = '/login';
+  }
+
+  return Promise.reject(refreshError);
+} finally {
+  isRefreshing = false;
+}
     }
 
     return Promise.reject(error);
