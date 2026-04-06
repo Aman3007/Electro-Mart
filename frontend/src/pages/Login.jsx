@@ -79,7 +79,12 @@ const Login = () => {
           </p>
         </div>
 
-        
+         {/* Demo credentials */}
+        <div className="mt-4 p-4 bg-dark-900/50 rounded-xl border border-dark-700 text-center">
+          <p className="text-xs text-dark-400">
+            🧪 Demo: <span className="text-primary-400">test@electromart.com</span> / <span className="text-primary-400">password123</span>
+          </p>
+        </div>
       </div>
     </div>
   );
