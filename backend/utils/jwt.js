@@ -1,5 +1,14 @@
 const jwt = require('jsonwebtoken');
 
+const isProduction = process.env.NODE_ENV === 'production';
+
+// Centralized cookie options
+const cookieOptions = {
+  httpOnly: true,
+  secure: isProduction,                // Required for cross-origin cookies in production
+  sameSite: isProduction ? 'none' : 'lax'
+};
+
 const generateTokens = (userId) => {
   const accessToken = jwt.sign(
     { id: userId },
@@ -17,27 +26,35 @@ const generateTokens = (userId) => {
 };
 
 const setTokenCookies = (res, accessToken, refreshToken) => {
-  const isProduction = process.env.NODE_ENV === 'production';
 
   res.cookie('accessToken', accessToken, {
-    httpOnly: true,
-    secure: isProduction,
-    sameSite: isProduction ? 'none' : 'lax',
-    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    ...cookieOptions,
+    maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
   });
 
   res.cookie('refreshToken', refreshToken, {
-    httpOnly: true,
-    secure: isProduction,
-    sameSite: isProduction ? 'none' : 'lax',
+    ...cookieOptions,
     maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-    path: '/api/auth/refresh',
+    path: '/api/auth/refresh'
   });
+
 };
 
 const clearTokenCookies = (res) => {
-  res.clearCookie('accessToken');
-  res.clearCookie('refreshToken', { path: '/api/auth/refresh' });
+
+  res.clearCookie('accessToken', {
+    ...cookieOptions
+  });
+
+  res.clearCookie('refreshToken', {
+    ...cookieOptions,
+    path: '/api/auth/refresh'
+  });
+
 };
 
-module.exports = { generateTokens, setTokenCookies, clearTokenCookies };
+module.exports = {
+  generateTokens,
+  setTokenCookies,
+  clearTokenCookies
+};

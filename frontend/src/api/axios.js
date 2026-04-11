@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: 'https://electro-mart-yuq0.onrender.com/api',
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
@@ -39,15 +39,16 @@ api.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        await axios.post('/api/auth/refresh', {}, { withCredentials: true });
+        await api.post('/api/auth/refresh');
         processQueue(null);
         return api(originalRequest);
       } catch (refreshError) {
         processQueue(refreshError, null);
-        // Redirect to login
+
         if (window.location.pathname !== '/login') {
           window.location.href = '/login';
         }
+
         return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;

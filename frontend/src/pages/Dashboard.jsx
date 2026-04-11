@@ -26,6 +26,14 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState('');
   const [deleting, setDeleting] = useState(null);
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
+  };
 
   const fetchMyListings = async (page = 1) => {
     try {
@@ -128,12 +136,22 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <Link
-          to="/create-listing"
-          className="btn-primary"
-        >
-          + Create New Listing
-        </Link>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={toggleTheme}
+            className="p-2.5 rounded-lg bg-dark-800 border border-dark-600 text-white hover:bg-dark-700 transition-colors flex items-center justify-center text-lg"
+            title="Toggle Theme"
+          >
+            {theme === 'dark' ? '☀️'  : '🌙'}
+          </button>
+          
+          <Link
+            to="/create-listing"
+            className="btn-primary"
+          >
+            + Create New Listing
+          </Link>
+        </div>
 
       </div>
 
@@ -324,3 +342,5 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+  

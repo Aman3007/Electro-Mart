@@ -3,6 +3,50 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-dark-50: 232 232 240;
+    --color-dark-100: 196 196 216;
+    --color-dark-200: 157 157 191;
+    --color-dark-300: 118 118 165;
+    --color-dark-400: 88 88 146;
+    --color-dark-500: 59 59 127;
+    --color-dark-600: 46 46 107;
+    --color-dark-700: 32 32 84;
+    --color-dark-800: 19 19 61;
+    --color-dark-900: 8 8 38;
+    --color-dark-950: 4 4 26;
+
+    --color-white: 255 255 255;
+    
+    --bg-gradient-1: rgba(0, 190, 255, 0.04);
+    --bg-gradient-2: rgba(46, 46, 107, 0.3);
+  }
+
+  [data-theme='light'] {
+    /* Deep blue-slate for text for better aesthetic contrast */
+    --color-dark-50: 16 42 67;
+    --color-dark-100: 36 59 83;
+    --color-dark-200: 72 101 129;
+    --color-dark-300: 98 125 152;
+    --color-dark-400: 130 154 177;
+    --color-dark-500: 159 180 200;
+    
+    /* Soft tinted borders */
+    --color-dark-600: 188 204 220;
+    --color-dark-700: 208 215 229;
+    
+    /* Elegant soft backgrounds (no plain white) */
+    --color-dark-800: 232 236 242; /* Inputs */
+    --color-dark-900: 244 247 251; /* Cards - arctic frost */
+    --color-dark-950: 235 240 248; /* Main body - elegant cool slate */
+    
+    --color-white: 16 42 67; /* Invert pure white text to deepest elegant slate */
+    
+    /* Enhance the gradient for an eye-catching soft glow in light mode */
+    --bg-gradient-1: rgba(0, 190, 255, 0.08);
+    --bg-gradient-2: rgba(46, 46, 107, 0.12);
+  }
+
   * {
     box-sizing: border-box;
   }
@@ -14,9 +58,10 @@
   body {
     @apply bg-dark-950 text-white font-body;
     background-image:
-      radial-gradient(ellipse at 20% 50%, rgba(0, 190, 255, 0.04) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 10%, rgba(46, 46, 107, 0.3) 0%, transparent 50%);
+      radial-gradient(ellipse at 20% 50%, var(--bg-gradient-1) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 10%, var(--bg-gradient-2) 0%, transparent 50%);
     min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   ::-webkit-scrollbar {
@@ -47,6 +92,10 @@
 
   .btn-danger {
     @apply bg-danger hover:bg-red-500 text-white font-semibold py-2.5 px-6 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2;
+  }
+
+  [data-theme='light'] .btn-danger {
+    color: #ffffff;
   }
 
   .btn-outline {
@@ -94,7 +143,7 @@
   }
 
   .shimmer {
-    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
   }

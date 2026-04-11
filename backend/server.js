@@ -23,7 +23,7 @@ const server = http.createServer(app);
 // Socket.IO setup
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    origin: process.env.CLIENT_URL || 'https://electro-mart-front.onrender.com',
     credentials: true,
   },
 });
@@ -35,7 +35,7 @@ setupSocket(io);
 // Security middleware
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
+  origin: process.env.CLIENT_URL || 'https://electro-mart-front.onrender.com',
   credentials: true,
 }));
 
