@@ -50,7 +50,7 @@ const Home = () => {
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
               <Link to="/register" className="btn-primary px-8 py-3 !text-[#ffffff]">
-                Start Selling 🚀
+                Start Selling
               </Link>
               <a href="#listings" className="btn-secondary px-8 py-3">
                 Browse Listings
