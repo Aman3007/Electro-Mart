@@ -36,8 +36,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-dark-800 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-dark-400 text-xs">© 2024 ElectroMart. All rights reserved.</p>
-          <p className="text-dark-400 text-xs">Built with ⚡ React + Node.js</p>
+          <p className="text-dark-400 text-xs">© 2026 ElectroMart. All rights reserved.</p>
         </div>
       </div>
     </footer>
